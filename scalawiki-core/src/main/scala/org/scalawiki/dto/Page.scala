@@ -55,17 +55,21 @@ object Page {
       talkId = talkId)
   }
 
-  def noText(id: Long, ns: Int, title: String, missing: Option[String] = None) = new Page(Some(id), ns, title, missing = missing.fold(false)(_ => true))
+  def noText(id: Long, ns: Int, title: String, missing: Option[String] = None) =
+    new Page(Some(id), ns, title, missing = missing.fold(false)(_ => true))
 
-  def withText(id: Long, ns: Int, title: String, text: Option[String]) = new Page(Some(id), ns, title, revisionsFromText(text))
+  def withText(id: Long, ns: Int, title: String, text: Option[String]) =
+    new Page(Some(id), ns, title, revisionsFromText(text))
 
-  def withRevisionsText(id: Long, ns: Int, title: String, texts: Seq[String])
-  = new Page(Some(id), ns, title, Revision.many(texts: _*))
+  def withRevisionsText(id: Long, ns: Int, title: String, texts: Seq[String]) =
+    new Page(Some(id), ns, title, Revision.many(texts: _*))
 
-  def withRevisions(id: Long, ns: Int, title: String, editToken: Option[String], revisions: Seq[Revision], missing: Option[String])
-  = new Page(Some(id), ns, title, revisions, Seq.empty, editToken, missing.fold(false)(_ => true))
+  def withRevisions(id: Long, ns: Int, title: String, editToken: Option[String],
+                    revisions: Seq[Revision], missing: Option[String]) =
+    new Page(Some(id), ns, title, revisions, Seq.empty, editToken, missing.fold(false)(_ => true))
 
-  def withImages(id: Long, ns: Int, title: String, images: Seq[Image]) = new Page(Some(id), ns, title, Seq.empty, images)
+  def withImages(id: Long, ns: Int, title: String, images: Seq[Image]) =
+    new Page(Some(id), ns, title, Seq.empty, images)
 
   def apply(title: String) = new Page(Some(0L), 0, title)
 
@@ -73,14 +77,8 @@ object Page {
 
   def apply(id: Long, ns: Int, title: String) = new Page(Some(id), ns, title)
 
-  def withEditToken(id: Option[Long], ns: Int, title: String, editToken: Option[String]) = {
+  def withEditToken(id: Option[Long], ns: Int, title: String, editToken: Option[String]) =
     new Page(id, ns, title, Seq.empty, Seq.empty, editToken)
-  }
 
   def revisionsFromText(text: Option[String]) = text.fold(Seq.empty[Revision])(content => Revision.many(content))
 }
-
-
-
-
-

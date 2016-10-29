@@ -6,7 +6,7 @@ import akka.io.IO
 import akka.pattern.ask
 import org.jsoup.Jsoup
 import org.scalawiki.dto.cmd.Action
-import org.scalawiki.dto.{LoginResponse, MwException, Page, Site}
+import org.scalawiki.dto._
 import org.scalawiki.http.{HttpClient, HttpClientSpray}
 import org.scalawiki.json.MwReads._
 import org.scalawiki.query.{DslQuery, PageQuery, SinglePageQuery}
@@ -25,6 +25,8 @@ trait MwBot {
   def login(user: String, password: String): Future[String]
 
   def run(action: Action, context: Map[String, String] = Map.empty): Future[Seq[Page]]
+
+  def read(action: Action, context: Map[String, String] = Map.empty): Future[ParseDefinition]
 
   def get(params: Map[String, String]): Future[String]
 
@@ -154,9 +156,11 @@ class MwBotImpl(val site: Site,
 
   def getTokens = get(tokensReads, "action" -> "tokens")
 
-  override def run(action: Action, context: Map[String, String] = Map.empty): Future[Seq[Page]] = {
+  override def run(action: Action, context: Map[String, String] = Map.empty): Future[Seq[Page]] =
     new DslQuery(action, this, context).run()
-  }
+
+  override def read(action: Action, context: Map[String, String]): Future[ParseDefinition] =
+    new DslQuery(action, this, context).read()
 
   def get[T](reads: Reads[T], params: (String, String)*): Future[T] =
     http.get(getUri(params: _*)) map {
@@ -262,14 +266,14 @@ object MwBot {
   def fromHost(host: String,
                loginInfo: Option[LoginInfo] = LoginInfo.fromEnv(),
                http: HttpClient = new HttpClientSpray(MwBot.system)
-         ): MwBot = {
+              ): MwBot = {
     fromSite(Site.host(host), loginInfo, http)
   }
 
   def fromSite(site: Site,
                loginInfo: Option[LoginInfo] = LoginInfo.fromEnv(),
                http: HttpClient = new HttpClientSpray(MwBot.system)
-         ): MwBot = {
+              ): MwBot = {
     Await.result(cache(site.domain) {
       Future {
         create(site, loginInfo, http)

@@ -2,7 +2,7 @@ package org.scalawiki.query
 
 import org.scalawiki.MwBot
 import org.scalawiki.dto.cmd.Action
-import org.scalawiki.dto.{MwException, Page}
+import org.scalawiki.dto.{MwException, Page, ParseDefinition}
 import org.scalawiki.json.Parser
 
 import scala.concurrent.Future
@@ -80,5 +80,11 @@ class DslQuery(val action: Action, val bot: MwBot, context: Map[String, String] 
     val progress = new QueryProgress(pages, done, action, bot, context)
 
     bot.system.eventStream.publish(progress)
+  }
+
+  def read(continue: Map[String, String] = Map.empty) : Future[ParseDefinition] = {
+    val params = action.pairs ++ Seq("format" -> "json") ++ continue
+    bot.get(params.toMap)
+    ???
   }
 }
