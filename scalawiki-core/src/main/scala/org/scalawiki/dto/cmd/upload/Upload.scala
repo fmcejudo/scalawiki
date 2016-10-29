@@ -1,6 +1,7 @@
 package org.scalawiki.dto.cmd.upload
 
 import org.scalawiki.dto.cmd._
+import org.scalawiki.dto.cmd.action.ActionArg
 
 
 case class Upload(override val params: UploadParam[Any]*)

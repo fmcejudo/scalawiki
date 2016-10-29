@@ -5,8 +5,8 @@ import akka.event.LoggingAdapter
 import akka.io.IO
 import akka.pattern.ask
 import org.jsoup.Jsoup
-import org.scalawiki.dto.cmd.Action
 import org.scalawiki.dto._
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.http.{HttpClient, HttpClientSpray}
 import org.scalawiki.json.MwReads._
 import org.scalawiki.query.{DslQuery, PageQuery, SinglePageQuery}

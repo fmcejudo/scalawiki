@@ -3,13 +3,13 @@ package org.scalawiki.query
 import java.nio.file.{Files, Paths}
 
 import org.scalawiki.MwBot
-import org.scalawiki.dto.{Namespace, Page}
-import org.scalawiki.dto.cmd._
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.edit._
 import org.scalawiki.dto.cmd.query._
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.dto.cmd.query.prop._
 import org.scalawiki.dto.cmd.query.prop.rvprop.RvProp
+import org.scalawiki.dto.{Namespace, Page}
 import org.scalawiki.json.MwReads._
 
 import scala.concurrent.Future

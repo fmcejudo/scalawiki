@@ -1,7 +1,7 @@
 package org.scalawiki.sql
 
 import org.scalawiki.MwBot
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.list.{EmbeddedIn, ListArgs}
 import org.scalawiki.dto.cmd.query.prop.rvprop.{Content, Ids, RvProp}
 import org.scalawiki.dto.cmd.query.prop.{Info, Prop, Revisions, RvPropArgs}

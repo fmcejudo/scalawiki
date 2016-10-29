@@ -2,7 +2,7 @@ package org.scalawiki.bots.stat
 
 import org.joda.time.DateTime
 import org.scalawiki.dto.Contributor
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.Query
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.time.TimeRange

@@ -1,9 +1,10 @@
 package org.scalawiki.dto.cmd.query
 
 import org.scalawiki.dto.cmd._
+import org.scalawiki.dto.cmd.action.ActionArg
 import org.scalawiki.dto.cmd.query.list.{ListArg, ListParam}
 import org.scalawiki.dto.cmd.query.meta.{MetaArg, MetaParam}
-import org.scalawiki.dto.cmd.query.prop.{Revisions, Prop, PropArg}
+import org.scalawiki.dto.cmd.query.prop.{Prop, PropArg, Revisions}
 
 
 /**

@@ -101,13 +101,5 @@ trait EnumArg[+T <: EnumArg[T]] {
 
 abstract class EnumArgument[T <: EnumArg[T]](val name: String, val summary: String) extends EnumArg[T]
 
-trait ActionArg extends EnumArg[ActionArg] {
-  /*val param = ActionParam*/
-}
-
-case class Action(override val arg: ActionArg) extends EnumParameter[ActionArg]("action", "") {
-  def query: Option[Query] = args.collect { case q: Query => q }.headOption
-  override def toString = pairs.toString()
-}
 
 

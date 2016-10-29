@@ -1,7 +1,7 @@
 package org.scalawiki.query
 
 import org.scalawiki.MwBot
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.{MwException, Page, ParseDefinition}
 import org.scalawiki.json.Parser
 

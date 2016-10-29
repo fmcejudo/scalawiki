@@ -1,6 +1,7 @@
 package org.scalawiki.dto.cmd.email
 
 import org.scalawiki.dto.cmd._
+import org.scalawiki.dto.cmd.action.ActionArg
 
 case class EmailUser(override val params: EmailParam[Any]*)
   extends  EnumArgument[ActionArg]("emailuser", "Email a user.")

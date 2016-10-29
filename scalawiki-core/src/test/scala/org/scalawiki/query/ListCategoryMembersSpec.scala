@@ -1,7 +1,7 @@
 package org.scalawiki.query
 
 import org.scalawiki.dto.Page
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.prop.{CategoryInfo, Prop}
 import org.scalawiki.dto.cmd.query.{Query, TitlesParam}
 import org.scalawiki.util.{Command, MockBotSpec}

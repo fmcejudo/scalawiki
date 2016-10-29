@@ -1,9 +1,7 @@
 package org.scalawiki.sql
 
-import java.util.concurrent.TimeUnit
-
 import org.scalawiki.MwBot
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.{Page, Revision, User}
 import org.scalawiki.query.DummyActionArg
 import org.scalawiki.util.{Command, MockBotSpec}
@@ -12,8 +10,7 @@ import slick.backend.DatabaseConfig
 import slick.driver.JdbcProfile
 import spray.util.pimpFuture
 
-import scala.concurrent.Await
-import scala.concurrent.duration.{Duration, _}
+import scala.concurrent.duration._
 
 class DslQueryDbCacheBlackBoxSpec extends Specification with MockBotSpec with BeforeAfter {
 

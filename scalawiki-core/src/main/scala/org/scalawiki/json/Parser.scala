@@ -1,9 +1,10 @@
 package org.scalawiki.json
 
+import org.scalawiki.dto.cmd.EnumArg
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.list.ListArg
 import org.scalawiki.dto.cmd.query.meta.MetaArg
 import org.scalawiki.dto.cmd.query.prop.PropArg
-import org.scalawiki.dto.cmd.{Action, EnumArg}
 import org.scalawiki.dto.{Image, _}
 import play.api.libs.json._
 

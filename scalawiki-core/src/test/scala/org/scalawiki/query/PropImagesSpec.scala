@@ -1,9 +1,9 @@
 package org.scalawiki.query
 
-import org.scalawiki.dto.{Image, Page}
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.prop.{ImageInfo, Images, Prop}
 import org.scalawiki.dto.cmd.query.{Generator, Query, TitlesParam}
+import org.scalawiki.dto.{Image, Page}
 import org.scalawiki.util.{Command, MockBotSpec}
 import org.specs2.mutable.Specification
 import spray.util.pimpFuture

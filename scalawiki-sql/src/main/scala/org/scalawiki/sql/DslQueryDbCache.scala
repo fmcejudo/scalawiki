@@ -2,7 +2,7 @@ package org.scalawiki.sql
 
 import org.scalawiki.MwBotImpl
 import org.scalawiki.dto.Page
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.{Generator, PageIdsParam, TitlesParam}
 import org.scalawiki.query.DslQuery
 
@@ -20,8 +20,9 @@ case class CacheStat(newPages: Int, cached: Int)
 
 class DslQueryDbCache(val dslQuery: DslQuery, val database: MwDatabase) {
 
-  import scala.concurrent.ExecutionContext.Implicits.global
   import org.scalawiki.dto.cmd.query.Query
+
+  import scala.concurrent.ExecutionContext.Implicits.global
 
   val bot = dslQuery.bot
   val log = bot.log

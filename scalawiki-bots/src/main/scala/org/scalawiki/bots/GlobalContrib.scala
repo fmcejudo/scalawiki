@@ -2,14 +2,14 @@ package org.scalawiki.bots
 
 import org.joda.time.DateTime
 import org.scalawiki.MwBot
-import org.scalawiki.dto.{SulAccount, User}
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.Query
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.dto.cmd.query.meta._
+import org.scalawiki.dto.{SulAccount, User}
 import org.scalawiki.time.TimeRange
-import scala.concurrent.ExecutionContext.Implicits.global
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 class GlobalContrib {

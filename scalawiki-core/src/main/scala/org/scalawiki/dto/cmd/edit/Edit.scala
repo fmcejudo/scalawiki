@@ -2,6 +2,7 @@ package org.scalawiki.dto.cmd.edit
 
 import org.joda.time.DateTime
 import org.scalawiki.dto.cmd._
+import org.scalawiki.dto.cmd.action.ActionArg
 
 
 case class Edit(override val params: EditParam[Any]*)

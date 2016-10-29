@@ -1,6 +1,6 @@
 package org.scalawiki.json
 
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.list.{EmbeddedIn, ListParam}
 import org.scalawiki.dto.cmd.query.prop.{LangLinks, LlLimit, Prop, Revisions}
 import org.scalawiki.dto.cmd.query.{PageIdsParam, Query, TitlesParam}

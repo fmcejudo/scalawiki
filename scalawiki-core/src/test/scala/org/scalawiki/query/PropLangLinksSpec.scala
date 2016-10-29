@@ -1,7 +1,7 @@
 package org.scalawiki.query
 
 import org.scalawiki.dto.Namespace
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.list.ListArgs
 import org.scalawiki.dto.cmd.query.prop.{LangLinks, LlLimit, Prop}
 import org.scalawiki.dto.cmd.query.{Generator, Query}

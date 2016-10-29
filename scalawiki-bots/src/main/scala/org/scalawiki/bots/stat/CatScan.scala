@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 import org.scalawiki.MwBot
 import org.scalawiki.dto.Namespace
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.dto.cmd.query.prop._
 import org.scalawiki.dto.cmd.query.{Generator, Query}

@@ -5,16 +5,17 @@ import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 import org.joda.time.DateTime
 import org.scalawiki.MwBot
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.email._
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.dto.cmd.query.prop.{Links, PlLimit, PlNamespace, Prop}
 import org.scalawiki.dto.cmd.query.{Query, TitlesParam}
 import org.scalawiki.dto.{Namespace, Page, User}
 import org.scalawiki.time.TimeRange
+import org.scalawiki.time.imports._
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
-import org.scalawiki.time.imports._
 
 case class Message(subject: String, body: String)
 

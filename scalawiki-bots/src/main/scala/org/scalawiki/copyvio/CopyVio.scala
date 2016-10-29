@@ -1,7 +1,7 @@
 package org.scalawiki.copyvio
 
 import org.scalawiki.dto.Page
-import org.scalawiki.dto.cmd.Action
+import org.scalawiki.dto.cmd.action.Action
 import org.scalawiki.dto.cmd.query.list.{EiLimit, EiTitle, EmbeddedIn}
 import org.scalawiki.dto.cmd.query.prop._
 import org.scalawiki.dto.cmd.query.{Generator, PageIdsParam, Query}
