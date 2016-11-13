@@ -2,7 +2,7 @@ package org.scalawiki.wlx.query
 
 import org.joda.time.DateTime
 import org.scalawiki.WithBot
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.list.{EiLimit, EiTitle, EmbeddedIn}
 import org.scalawiki.dto.cmd.query.prop._
 import org.scalawiki.dto.cmd.query.{Generator, PageIdsParam, Query}
@@ -91,7 +91,7 @@ class MonumentQueryApi(val contest: Contest) extends MonumentQuery with WithBot 
   }
 
   def pagesWithTemplate(template: String): Future[Seq[Long]] = {
-    val action = Action(Query(
+    val action = QueryAction(Query(
       Prop(
         Info(InProp(SubjectId)),
         Revisions()
@@ -112,7 +112,7 @@ class MonumentQueryApi(val contest: Contest) extends MonumentQuery with WithBot 
   def pageRevisions(id: Long, date: DateTime): Future[Option[Page]] = {
     import org.scalawiki.dto.cmd.query.prop.rvprop._
 
-    val action = Action(Query(
+    val action = QueryAction(Query(
       PageIdsParam(Seq(id)),
       Prop(
         Info(),

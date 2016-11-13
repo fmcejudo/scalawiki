@@ -5,7 +5,7 @@ import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 import org.joda.time.DateTime
 import org.scalawiki.MwBot
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.email._
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.dto.cmd.query.prop.{Links, PlLimit, PlNamespace, Prop}
@@ -104,14 +104,14 @@ class MessageBot(val conf: Config) {
     }
   }
 
-  def whatLinksHere(title: String, ns: Int) = Action(Query(
+  def whatLinksHere(title: String, ns: Int) = QueryAction(Query(
     Prop(Links(PlNamespace(Seq(ns)), PlLimit("max"))),
     TitlesParam(Seq(title))
   ))
 
   def userProps(users: Seq[String]) = {
     println("Users:" + users.size)
-    Action(Query(
+    QueryAction(Query(
       ListParam(Users(
         UsUsers(users),
         UsProp(UsEmailable, UsGender)
@@ -133,7 +133,7 @@ class MessageBot(val conf: Config) {
       UcLimit("max")
     ) ++ range.start.map(UcStart) ++ range.end.map(UcEnd)
 
-    Action(Query(ListParam(UserContribs(ucParams: _*))))
+    QueryAction(Query(ListParam(UserContribs(ucParams: _*))))
   }
 
   def userPagesToUserNames(pages: Seq[Page]): Seq[String] =
@@ -149,7 +149,7 @@ class MessageBot(val conf: Config) {
   }
 
   def email(user: String, subject: String, text: String) = {
-    val cmd = Action(EmailUser(
+    val cmd = QueryAction(EmailUser(
       Target(user),
       Subject(subject),
       Text(text),

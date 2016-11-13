@@ -3,7 +3,7 @@ package org.scalawiki.query
 import java.nio.file.{Files, Paths}
 
 import org.scalawiki.MwBot
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.edit._
 import org.scalawiki.dto.cmd.query._
 import org.scalawiki.dto.cmd.query.list._
@@ -30,7 +30,7 @@ class PageQueryImplDsl(query: Either[Set[Long], Set[String]],
       titles => TitlesParam(titles.toSeq)
     )
 
-    val action = Action(Query(
+    val action = QueryAction(Query(
       pages,
       Prop(
         Info(),
@@ -56,7 +56,7 @@ class PageQueryImplDsl(query: Either[Set[Long], Set[String]],
     val pageId: Option[Long] = query.left.toOption.map(_.head)
     val title: Option[String] = query.right.toOption.map(_.head)
 
-    val action = Action(Query(
+    val action = QueryAction(Query(
       Prop(
         Info(),
         Revisions(RvProp(RvPropArgs.byNames(props.toSeq): _*))
@@ -97,7 +97,7 @@ class PageQueryImplDsl(query: Either[Set[Long], Set[String]],
       Generator(generatorArg)
     )
 
-    val action = Action(Query(queryParams:_*))
+    val action = QueryAction(Query(queryParams:_*))
 
     bot.run(action, context)
   }
@@ -109,7 +109,7 @@ class PageQueryImplDsl(query: Either[Set[Long], Set[String]],
       titles => Title(titles.head)
     )
 
-    val action = Action(Edit(
+    val action = QueryAction(Edit(
       page,
       Text(text),
       Token(token.fold(bot.token)(identity))
@@ -160,7 +160,7 @@ class PageQueryImplDsl(query: Either[Set[Long], Set[String]],
       titles => EiTitle(titles.head)
     )
 
-    val action = Action(Query(
+    val action = QueryAction(Query(
       ListParam(
         EmbeddedIn(
           pages,
@@ -187,7 +187,7 @@ class PageQueryImplDsl(query: Either[Set[Long], Set[String]],
       CmNamespace(namespaces.toSeq)
     ) ++ (if (cmTypes.nonEmpty) Seq(CmType(cmTypes.toSeq: _*)) else Seq.empty)
 
-    val action = Action(Query(
+    val action = QueryAction(Query(
       ListParam(
         CategoryMembers(cmParams: _*)
       )

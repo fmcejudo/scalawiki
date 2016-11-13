@@ -1,6 +1,6 @@
 package org.scalawiki.query
 
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.prop.{ImageInfo, Images, Prop}
 import org.scalawiki.dto.cmd.query.{Generator, Query, TitlesParam}
 import org.scalawiki.dto.{Image, Page}
@@ -42,7 +42,7 @@ class PropImagesSpec extends Specification with MockBotSpec {
 
       val bot = getBot(commands: _*)
 
-      val action = Action(Query(
+      val action = QueryAction(Query(
         TitlesParam(Seq("Albert_Einstein")),
         Prop(Images())
       ))
@@ -98,7 +98,7 @@ class PropImagesSpec extends Specification with MockBotSpec {
     )
 
     val bot = getBot(commands: _*)
-    val action = Action(Query(
+    val action = QueryAction(Query(
       TitlesParam(Seq("Commons:Wiki_Loves_Earth_2015/Winners")),
       Prop(ImageInfo()),
       Generator(Images())

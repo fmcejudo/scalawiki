@@ -1,7 +1,7 @@
 package org.scalawiki.query
 
 import org.scalawiki.dto.User
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.Query
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.util.{Command, MockBotSpec}
@@ -27,7 +27,7 @@ class ListUsersSpec extends Specification with MockBotSpec {
       val bot = getBot(commands: _*)
 
       val action =
-        Action(
+        QueryAction(
           Query(
             ListParam(
               Users()
@@ -63,7 +63,7 @@ class ListUsersSpec extends Specification with MockBotSpec {
       val bot = getBot(commands: _*)
 
       val action =
-        Action(
+        QueryAction(
           Query(
             ListParam(
               Users(UsUsers(Seq("MissingUser")))
@@ -108,7 +108,7 @@ class ListUsersSpec extends Specification with MockBotSpec {
       val bot = getBot(commands: _*)
 
       val action =
-        Action(
+        QueryAction(
           Query(
             ListParam(
               Users(UsUsers(Seq("MissingUser", "ExistingUser")))
@@ -159,7 +159,7 @@ class ListUsersSpec extends Specification with MockBotSpec {
       val bot = getBot(commands: _*)
 
       val action =
-        Action(
+        QueryAction(
           Query(
             ListParam(
               Users(
@@ -223,7 +223,7 @@ class ListUsersSpec extends Specification with MockBotSpec {
       val bot = getBot(commands: _*)
 
       val action =
-        Action(
+        QueryAction(
           Query(
             ListParam(
               Users(

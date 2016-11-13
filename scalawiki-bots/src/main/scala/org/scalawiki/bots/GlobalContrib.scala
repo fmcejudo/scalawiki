@@ -2,7 +2,7 @@ package org.scalawiki.bots
 
 import org.joda.time.DateTime
 import org.scalawiki.MwBot
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.Query
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.dto.cmd.query.meta._
@@ -16,7 +16,7 @@ class GlobalContrib {
 
   val bot = MwBot.fromHost(MwBot.commons)
 
-  def guiAction(username: String) = Action(Query(MetaParam(
+  def guiAction(username: String) = QueryAction(Query(MetaParam(
     GlobalUserInfo(
       GuiProp(
         Merged, Unattached, EditCount
@@ -31,7 +31,7 @@ class GlobalContrib {
       UcLimit("500")
     ) ++ range.start.map(UcStart) ++ range.end.map(UcEnd)
 
-    Action(Query(ListParam(UserContribs(ucParams: _*))))
+    QueryAction(Query(ListParam(UserContribs(ucParams: _*))))
   }
 
   def editsBefore(user: User, acc: SulAccount, start: DateTime): Future[Long] = {

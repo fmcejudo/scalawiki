@@ -1,7 +1,7 @@
 package org.scalawiki.query
 
 import org.scalawiki.Timestamp
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.Query
 import org.scalawiki.dto.cmd.query.list.{ListParam, UcUser, UserContribs}
 import org.scalawiki.dto.{Page, Revision, User}
@@ -44,7 +44,7 @@ class ListUserContribsSpec extends Specification with MockBotSpec {
       val bot = getBot(commands: _*)
 
       val action =
-        Action(
+        QueryAction(
           Query(
             ListParam(
               UserContribs(UcUser(Seq("Catrope")))

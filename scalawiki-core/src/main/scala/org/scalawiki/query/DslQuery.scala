@@ -1,16 +1,16 @@
 package org.scalawiki.query
 
 import org.scalawiki.MwBot
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.{MwException, Page, ParseDefinition}
 import org.scalawiki.json.Parser
 
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
-case class QueryProgress(pages: Long, done: Boolean, action: Action, bot: MwBot, context: Map[String, String] = Map.empty)
+case class QueryProgress(pages: Long, done: Boolean, action: QueryAction, bot: MwBot, context: Map[String, String] = Map.empty)
 
-class DslQuery(val action: Action, val bot: MwBot, context: Map[String, String] = Map.empty) {
+class DslQuery(val action: QueryAction, val bot: MwBot, context: Map[String, String] = Map.empty) {
 
   import scala.concurrent.ExecutionContext.Implicits.global
 

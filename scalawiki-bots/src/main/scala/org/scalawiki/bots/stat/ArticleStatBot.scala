@@ -1,7 +1,7 @@
 package org.scalawiki.bots.stat
 
 import org.scalawiki.dto.Page
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.list.{EiLimit, EiTitle, EmbeddedIn}
 import org.scalawiki.dto.cmd.query.prop._
 import org.scalawiki.dto.cmd.query.{Generator, PageIdsParam, Query}
@@ -16,7 +16,7 @@ class ArticleStatBot() extends WithBot {
   val host = MwBot.ukWiki
 
   def pagesWithTemplate(template: String): Future[Seq[Long]] = {
-    val action = Action(Query(
+    val action = QueryAction(Query(
       Prop(
         Info(InProp(SubjectId)),
         Revisions()
@@ -40,7 +40,7 @@ class ArticleStatBot() extends WithBot {
   def pageRevisions(id: Long): Future[Option[Page]] = {
     import org.scalawiki.dto.cmd.query.prop.rvprop._
 
-    val action = Action(Query(
+    val action = QueryAction(Query(
       PageIdsParam(Seq(id)),
       Prop(
         Info(),

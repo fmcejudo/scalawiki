@@ -1,7 +1,7 @@
 package org.scalawiki.query
 
 import org.scalawiki.dto.Namespace
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.list.ListArgs
 import org.scalawiki.dto.cmd.query.prop.{LangLinks, LlLimit, Prop}
 import org.scalawiki.dto.cmd.query.{Generator, Query}
@@ -91,7 +91,7 @@ class PropLangLinksSpec extends Specification with MockBotSpec {
 
       val bot = getBot(commands: _*)
 
-      val action = Action(Query(
+      val action = QueryAction(Query(
         Prop(
           LangLinks(LlLimit("2"))
         ),

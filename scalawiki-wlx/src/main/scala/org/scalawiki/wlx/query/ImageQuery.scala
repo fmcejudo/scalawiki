@@ -1,6 +1,6 @@
 package org.scalawiki.wlx.query
 
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.dto.cmd.query.prop.iiprop.{IiProp, Timestamp}
 import org.scalawiki.dto.cmd.query.prop.rvprop.RvProp
@@ -32,7 +32,7 @@ class ImageQueryApi extends ImageQuery with WithBot {
 
   def imagesByGenerator(contest: Contest, generator: Generator): Future[Seq[Image]] = {
     import org.scalawiki.dto.cmd.query.prop._
-    val action = Action(Query(
+    val action = QueryAction(Query(
       Prop(
         Info(),
         Revisions(RvProp(rvprop.Ids, rvprop.Content, rvprop.Timestamp, rvprop.User, rvprop.UserId)),

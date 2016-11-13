@@ -2,7 +2,7 @@ package org.scalawiki.query
 
 import org.scalawiki.Timestamp
 import org.scalawiki.dto.User
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.Query
 import org.scalawiki.dto.cmd.query.list.{AllUsers, AuProp, ListParam}
 import org.scalawiki.util.{Command, MockBotSpec}
@@ -36,7 +36,7 @@ class ListAllUsersSpec extends Specification with MockBotSpec {
       val bot = getBot(commands: _*)
 
       val action =
-        Action(
+        QueryAction(
           Query(
             ListParam(
               AllUsers()
@@ -86,7 +86,7 @@ class ListAllUsersSpec extends Specification with MockBotSpec {
       val bot = getBot(Seq(new Command(query, response1)): _*)
 
       val action =
-        Action(
+        QueryAction(
           Query(
             ListParam(
               AllUsers(AuProp(Seq("registration", "editcount", "blockinfo")))
@@ -148,7 +148,7 @@ class ListAllUsersSpec extends Specification with MockBotSpec {
       val bot = getBot(commands: _*)
 
       val action =
-        Action(
+        QueryAction(
           Query(
             ListParam(
               AllUsers()

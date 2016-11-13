@@ -1,7 +1,7 @@
 package org.scalawiki.query
 
 import org.scalawiki.dto.Page
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.prop.{CategoryInfo, Prop}
 import org.scalawiki.dto.cmd.query.{Query, TitlesParam}
 import org.scalawiki.util.{Command, MockBotSpec}
@@ -93,7 +93,7 @@ class ListCategoryMembersSpec extends Specification with MockBotSpec {
 
       val bot = getBot(commands: _*)
 
-      val query = Action(Query(TitlesParam(Seq("Albert Einstein", "Category:Foo", "Category:Infobox_templates", "NoSuchTitle")),
+      val query = QueryAction(Query(TitlesParam(Seq("Albert Einstein", "Category:Foo", "Category:Infobox_templates", "NoSuchTitle")),
         Prop(CategoryInfo)))
 
       val result = bot.run(query).await

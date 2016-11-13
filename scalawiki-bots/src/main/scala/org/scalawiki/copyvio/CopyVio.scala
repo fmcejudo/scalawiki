@@ -1,7 +1,7 @@
 package org.scalawiki.copyvio
 
 import org.scalawiki.dto.Page
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.list.{EiLimit, EiTitle, EmbeddedIn}
 import org.scalawiki.dto.cmd.query.prop._
 import org.scalawiki.dto.cmd.query.{Generator, PageIdsParam, Query}
@@ -55,7 +55,7 @@ object CopyVio extends WithBot {
   val host = MwBot.ukWiki
 
   def pagesWithTemplate(template: String): Future[Seq[Long]] = {
-    val action = Action(Query(
+    val action = QueryAction(Query(
       Prop(
         Info(InProp(SubjectId)),
         Revisions()
@@ -75,7 +75,7 @@ object CopyVio extends WithBot {
   def pagesByIds(ids: Seq[Long]): Future[Seq[Page]] = {
     import org.scalawiki.dto.cmd.query.prop.rvprop._
 
-    val action = Action(Query(
+    val action = QueryAction(Query(
       PageIdsParam(ids),
       Prop(
         Info(),

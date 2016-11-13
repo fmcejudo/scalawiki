@@ -1,7 +1,7 @@
 package org.scalawiki.query
 
 import org.scalawiki.dto.User
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.Query
 import org.scalawiki.dto.cmd.query.meta._
 import org.scalawiki.util.TestUtils._
@@ -11,7 +11,7 @@ import spray.util.pimpFuture
 
 class MetaGlobalUserInfoSpec extends Specification with MockBotSpec {
 
-  val action = Action(Query(MetaParam(
+  val action = QueryAction(Query(MetaParam(
     GlobalUserInfo(
       GuiProp(
         Merged, Unattached, EditCount

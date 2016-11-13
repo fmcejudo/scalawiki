@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 import org.scalawiki.MwBot
 import org.scalawiki.dto.Namespace
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.dto.cmd.query.prop._
 import org.scalawiki.dto.cmd.query.{Generator, Query}
@@ -125,7 +125,7 @@ object CatScan {
   }
 
   def catsWithLinks(title: String, namespaces: Set[Int], bot: MwBot) = {
-    val action = Action(Query(
+    val action = QueryAction(Query(
       Prop(
         LangLinks(LlLimit("max"))
       ),

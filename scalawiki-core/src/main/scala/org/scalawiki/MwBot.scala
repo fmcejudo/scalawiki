@@ -6,7 +6,7 @@ import akka.io.IO
 import akka.pattern.ask
 import org.jsoup.Jsoup
 import org.scalawiki.dto._
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.http.{HttpClient, HttpClientSpray}
 import org.scalawiki.json.MwReads._
 import org.scalawiki.query.{DslQuery, PageQuery, SinglePageQuery}
@@ -24,9 +24,9 @@ trait MwBot {
 
   def login(user: String, password: String): Future[String]
 
-  def run(action: Action, context: Map[String, String] = Map.empty): Future[Seq[Page]]
+  def run(action: QueryAction, context: Map[String, String] = Map.empty): Future[Seq[Page]]
 
-  def read(action: Action, context: Map[String, String] = Map.empty): Future[ParseDefinition]
+  //def read(action: Action, context: Map[String, String] = Map.empty): Future[ParseDefinition]
 
   def get(params: Map[String, String]): Future[String]
 
@@ -156,11 +156,11 @@ class MwBotImpl(val site: Site,
 
   def getTokens = get(tokensReads, "action" -> "tokens")
 
-  override def run(action: Action, context: Map[String, String] = Map.empty): Future[Seq[Page]] =
+  override def run(action: QueryAction, context: Map[String, String] = Map.empty): Future[Seq[Page]] =
     new DslQuery(action, this, context).run()
 
-  override def read(action: Action, context: Map[String, String]): Future[ParseDefinition] =
-    new DslQuery(action, this, context).read()
+  /*override def read(action: Action, context: Map[String, String]): Future[ParseDefinition] =
+    new DslQuery(action, this, context).read()*/
 
   def get[T](reads: Reads[T], params: (String, String)*): Future[T] =
     http.get(getUri(params: _*)) map {

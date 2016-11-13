@@ -1,7 +1,7 @@
 package org.scalawiki.sql
 
 import org.scalawiki.MwBot
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.{Page, Revision, User}
 import org.scalawiki.query.DummyActionArg
 import org.scalawiki.util.{Command, MockBotSpec}
@@ -30,7 +30,7 @@ class DslQueryDbCacheBlackBoxSpec extends Specification with MockBotSpec with Be
 
   def textDao = mwDb.textDao
 
-  val dummyAction = Action(DummyActionArg)
+  val dummyAction = QueryAction(DummyActionArg)
 
   override def getBot(commands: Command*) = {
     val apiBot = super.getBot(commands:_*)

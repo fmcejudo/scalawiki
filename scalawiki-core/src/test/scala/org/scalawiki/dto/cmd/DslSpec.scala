@@ -1,6 +1,8 @@
 package org.scalawiki.dto.cmd
 
-import org.scalawiki.dto.cmd.action.Action
+import akka.actor.Props
+import org.scalawiki.dto.cmd.action.{ParseAction, QueryAction}
+import org.scalawiki.dto.cmd.parse.{Parse, ParsePageIdParam, ParseTitleParam}
 import org.scalawiki.dto.cmd.query.list.{CategoryMembers, CmTitle, EiTitle, EmbeddedIn}
 import org.scalawiki.dto.cmd.query.prop._
 import org.scalawiki.dto.cmd.query.{Generator, Query}
@@ -11,7 +13,7 @@ class DslSpec extends Specification  with ThrownMessages {
 
   "1" should {
     "23" in {
-      val action = Action(
+      val action = QueryAction(
         Query(
           Prop(
             Info(InProp(SubjectId)),
@@ -27,7 +29,7 @@ class DslSpec extends Specification  with ThrownMessages {
 
   "1" should {
     "23" in {
-      val action = Action(
+      val action = QueryAction(
         Query(
           Prop(
             Info(InProp(SubjectId)),
@@ -45,7 +47,7 @@ class DslSpec extends Specification  with ThrownMessages {
 
   "2" should {
     "34" in {
-      val action = Action(Query(
+      val action = QueryAction(Query(
           Prop(
             Info(InProp(SubjectId)),
             Revisions()
@@ -65,7 +67,7 @@ class DslSpec extends Specification  with ThrownMessages {
 
   "3" should {
     "34" in {
-      val action = Action(
+      val action = QueryAction(
         Query(
           Prop(
             Info(InProp(SubjectId)),
@@ -81,6 +83,23 @@ class DslSpec extends Specification  with ThrownMessages {
         "inprop" -> "subjectid",
         "generator" -> "categorymembers",
         "gcmtitle" -> "Category:Name"
+      )
+    }
+  }
+
+  "4" should {
+    "41" in {
+      val action = ParseAction(
+        Parse(
+          ParseTitleParam("title"),
+          ParsePageIdParam(3)
+        )
+      )
+      
+      action.pairs.toMap === Map(
+        "action" -> "parse",
+        "title" -> "title",
+        "pageid" -> "3"
       )
     }
   }

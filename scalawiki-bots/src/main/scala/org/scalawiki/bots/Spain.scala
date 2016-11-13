@@ -2,7 +2,7 @@ package org.scalawiki.bots
 
 import org.joda.time.{DateTime, DateTimeZone}
 import org.scalawiki.MwBot
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.list.{CategoryMembers, CmLimit, CmNamespace, CmTitle}
 import org.scalawiki.dto.cmd.query.prop._
 import org.scalawiki.dto.cmd.query.{Generator, PageIdsParam, Query}
@@ -18,7 +18,7 @@ object Spain {
   def main(args: Array[String]) {
     bot = MwBot.fromHost(MwBot.commons)
 
-    val action = Action(Query(
+    val action = QueryAction(Query(
       Prop(
         Info(),
         ImageInfo(
@@ -82,7 +82,7 @@ object Spain {
   def pageRevisions(id: Long): Future[Option[Page]] = {
     import org.scalawiki.dto.cmd.query.prop.rvprop._
 
-    val action = Action(Query(
+    val action = QueryAction(Query(
       PageIdsParam(Seq(id)),
       Prop(
         Info(),

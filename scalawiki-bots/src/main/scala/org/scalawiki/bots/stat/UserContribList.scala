@@ -2,7 +2,7 @@ package org.scalawiki.bots.stat
 
 import org.joda.time.DateTime
 import org.scalawiki.dto.Contributor
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.Query
 import org.scalawiki.dto.cmd.query.list._
 import org.scalawiki.time.TimeRange
@@ -16,7 +16,7 @@ object UserContribList extends WithBot {
   val host = MwBot.ukWiki
 
   val allUsersQuery =
-    Action(Query(ListParam(
+    QueryAction(Query(ListParam(
       AllUsers(
         AuProp(Seq("registration", "editcount", "blockinfo")),
         AuWithEditsOnly(true), AuLimit("max"), AuExcludeGroup(Seq("bot")))
@@ -28,10 +28,10 @@ object UserContribList extends WithBot {
       UcLimit(limit)
     ) ++ range.start.map(UcStart) ++ range.end.map(UcEnd)
 
-    Action(Query(ListParam(UserContribs(ucParams: _*))))
+    QueryAction(Query(ListParam(UserContribs(ucParams: _*))))
   }
 
-  def getUsers(action: Action): Future[Seq[Contributor]] =
+  def getUsers(action: QueryAction): Future[Seq[Contributor]] =
     bot.run(action).map(pages => pages.flatMap(_.lastRevisionUser))
 
   def main(args: Array[String]) {

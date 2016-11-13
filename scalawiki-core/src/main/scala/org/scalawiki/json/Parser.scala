@@ -1,7 +1,7 @@
 package org.scalawiki.json
 
 import org.scalawiki.dto.cmd.EnumArg
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.list.ListArg
 import org.scalawiki.dto.cmd.query.meta.MetaArg
 import org.scalawiki.dto.cmd.query.prop.PropArg
@@ -10,7 +10,7 @@ import play.api.libs.json._
 
 import scala.util.Try
 
-class Parser(val action: Action) {
+class Parser(val action: QueryAction) {
 
   val params = action.pairs.toMap
 

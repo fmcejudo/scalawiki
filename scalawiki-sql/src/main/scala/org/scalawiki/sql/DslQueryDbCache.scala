@@ -2,7 +2,7 @@ package org.scalawiki.sql
 
 import org.scalawiki.MwBotImpl
 import org.scalawiki.dto.Page
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.{Generator, PageIdsParam, TitlesParam}
 import org.scalawiki.query.DslQuery
 
@@ -11,7 +11,7 @@ import scala.concurrent.Future
 class DbCachedBot(apiBot: MwBotImpl, database: MwDatabase)
   extends MwBotImpl(apiBot.host, apiBot.http) {
 
-  override def run(action: Action, context: Map[String, String] = Map.empty): Future[Seq[Page]] = {
+  override def run(action: QueryAction, context: Map[String, String] = Map.empty): Future[Seq[Page]] = {
     new DslQueryDbCache(new DslQuery(action, apiBot), database).run()
   }
 }
@@ -70,7 +70,7 @@ class DslQueryDbCache(val dslQuery: DslQuery, val database: MwDatabase) {
   }
 
   def idsOnlyApiQuery(query: Query): DslQuery = {
-    val idsAction = Action(query.revisionsWithoutContent)
+    val idsAction = QueryAction(query.revisionsWithoutContent)
 
     new DslQuery(idsAction, dslQuery.bot)
   }
@@ -108,7 +108,7 @@ class DslQueryDbCache(val dslQuery: DslQuery, val database: MwDatabase) {
       } else {
         notInDBQuery(query, notInDbIds.toSeq.sorted)
       }
-      val notInDbQueries = notInDbQueryDtos.map(dto => new DslQuery(Action(dto), dslQuery.bot))
+      val notInDbQueries = notInDbQueryDtos.map(dto => new DslQuery(QueryAction(dto), dslQuery.bot))
 
       Future.traverse(notInDbQueries)(_.run()).map(seqs => seqs.flatten)
     }

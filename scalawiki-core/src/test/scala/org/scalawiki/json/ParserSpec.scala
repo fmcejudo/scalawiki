@@ -1,6 +1,6 @@
 package org.scalawiki.json
 
-import org.scalawiki.dto.cmd.action.Action
+import org.scalawiki.dto.cmd.action.QueryAction
 import org.scalawiki.dto.cmd.query.list.{EmbeddedIn, ListParam}
 import org.scalawiki.dto.cmd.query.prop.{LangLinks, LlLimit, Prop, Revisions}
 import org.scalawiki.dto.cmd.query.{PageIdsParam, Query, TitlesParam}
@@ -20,7 +20,7 @@ class ParserSpec extends Specification {
 
   val queryStr = s""""query": {"$queryType": [$pageStr] }"""
 
-  val emptyAction = Action(Query(ListParam(EmbeddedIn())))
+  val emptyAction = QueryAction(Query(ListParam(EmbeddedIn())))
 
   "One page query" should {
     val limitsStr = s"""{"limits": {"embeddedin": 500}, $queryStr}"""
@@ -89,7 +89,7 @@ class ParserSpec extends Specification {
     "parse page with lang links" in {
       val s = resourceAsString("/org/scalawiki/query/langLinks.json")
 
-      val action = Action(Query(
+      val action = QueryAction(Query(
         Prop(
           LangLinks(LlLimit("max"))
         ),
@@ -112,7 +112,7 @@ class ParserSpec extends Specification {
     }
 
     "parse mwerror" in {
-      val action = Action(Query(Prop(Revisions()),
+      val action = QueryAction(Query(Prop(Revisions()),
         TitlesParam(Seq("PageTitle")),
         PageIdsParam(Seq(123456))
       ))
